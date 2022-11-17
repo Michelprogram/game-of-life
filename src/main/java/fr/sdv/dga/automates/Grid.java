@@ -1,6 +1,7 @@
 package fr.sdv.dga.automates;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 
@@ -9,8 +10,8 @@ import static java.lang.Thread.sleep;
  */
 public class Grid {
 
-    int RANGE_NEIGHBORS = 3, START_COUNTING = 1;
-    int DEFAULT_COLUMN = 10,DEFAULT_ROW = 10, DEFAULT_GENERATION = 10, DEFAULT_PAUSE = 2000;
+    private int RANGE_NEIGHBORS = 3, START_COUNTING = 1;
+    private int DEFAULT_COLUMN = 10,DEFAULT_ROW = 10, DEFAULT_PAUSE = 2000;
     private int column, row, generation;
 
     private ArrayList<ArrayList<Cell>> board;
@@ -38,59 +39,55 @@ public class Grid {
     public Grid(Figures figure){
         this.column = DEFAULT_COLUMN;
         this.row = DEFAULT_ROW;
-        this.generation = DEFAULT_GENERATION;
 
         this.board = new ArrayList(column);
 
         initEmptyBoard();
 
         switch (figure){
-            case PLANEUR -> {
-                setPlaneur();
+            case PLANE -> {
+                setPlane();
             }
-            case CLIGNOTANT -> {
-                setClignotant();
+            case FLASHING -> {
+                setFlash();
             }
         }
 
     }
 
     /**
-     * Set Clignotant shape for grid
+     * Set flashing shape for grid
      */
-    private void setClignotant(){
+    private void setFlash(){
 
-        ArrayList<Cell> cells = new ArrayList<>();
+        int middleFlash1 = (DEFAULT_ROW / 2) - 1;
+        int middleFlash2 = (DEFAULT_ROW / 2) + 1;
 
-        int middle = (DEFAULT_ROW / 2) - 1;
+        setCell(new Cell(middleFlash1 -1,middleFlash1 - 1, true));
+        setCell(new Cell(middleFlash1 - 2, middleFlash1 - 1, true));
+        setCell(new Cell(middleFlash1, middleFlash1 - 1, true));
 
-        cells.add(new Cell(middle,middle, true));
-        cells.add(new Cell(middle - 1, middle, true));
-        cells.add(new Cell(middle + 1, middle, true));
+        setCell(new Cell(middleFlash2 -1,middleFlash2 + 1, true));
+        setCell(new Cell(middleFlash2 - 2, middleFlash2 + 1, true));
+        setCell(new Cell(middleFlash2, middleFlash2 + 1, true));
 
-        for (Cell cell:cells ) {
-            setCell(cell);
-        }
     }
 
     /**
-     * Set Planeur shape for grid
+     * Set plane shape for grid
      */
-    private void setPlaneur(){
-
-        ArrayList<Cell> cells = new ArrayList<>();
+    private void setPlane(){
 
         int y = DEFAULT_ROW - 1;
 
-        cells.add(new Cell(0,y, true));
-        cells.add(new Cell(1, y, true));
-        cells.add(new Cell(2, y, true));
-        cells.add(new Cell(2, y - 1, true));
-        cells.add(new Cell(1, y - 2, true));
+        setCell(new Cell(1,y, true));
 
-        for (Cell cell:cells ) {
-            setCell(cell);
-        }
+        setCell(new Cell(2, y - 1, true));
+
+        //Bottom line
+        setCell(new Cell(0, y - 2, true));
+        setCell(new Cell(1, y - 2, true));
+        setCell(new Cell(2, y - 2, true));
 
     }
 
@@ -200,26 +197,37 @@ public class Grid {
         }
     }
 
-    private void pause(int time) throws  InterruptedException{
-        Thread.sleep(time);
-    }
-
-    private void game(int iteration){
-        Utils.resetTerminal();
-        draw(iteration);
-        scan();
-    }
-
-
+    /**
+     * Rune game while cells live and there is no infinity loop
+     * @throws InterruptedException
+     */
     public void runWhileCellsLive() throws InterruptedException{
 
         int i = 0;
 
         while (countAliveCell() != 0){
             game(i);
-            pause(DEFAULT_PAUSE);
+            pause(200);
             i++;
         }
+    }
+
+    /**
+     * Pause main thread
+     * @param time
+     * @throws InterruptedException
+     */
+    private void pause(int time) throws  InterruptedException{
+        Thread.sleep(time);
+    }
+
+    /**
+     * Draw game and scan
+     * @param iteration
+     */
+    private void game(int iteration){
+        draw(iteration);
+        scan();
     }
 
     /**
@@ -248,14 +256,14 @@ public class Grid {
 
         ArrayList<ArrayList<Cell>> newBoard = generateNewBoard();
 
-        for (int y = 0; y < row; y++) {
-            for (int x = 0; x < column; x++) {
+        for (int x = 0; x < column; x++) {
+            for (int y = 0; y < row; y++) {
                 cell = getCell(x,y);
 
                 neighbors = countNeighbors(cell);
 
                 status = cell.rule(neighbors);
-                newBoard.get(y).add(new Cell(x, y,status));
+                newBoard.get(x).add(new Cell(x, y,status));
             }
         }
 
@@ -360,4 +368,5 @@ public class Grid {
     public void setBoard(ArrayList<ArrayList<Cell>> board) {
         this.board = board;
     }
+
 }
