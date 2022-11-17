@@ -109,26 +109,21 @@ Rule method is based on this :
 * Each cell with two or three neighbors survives.
 * Each cell with three neighbors becomes populated.
 
-Run in dev mode :
+### Menu
 
-```bash
-$bash : npm run dev
-```
+Menu class part interact with user. You can choose over 5 options.
 
-To build project :
+1. Random game, you'll ask chose column, row and number of generation.
+2. Plane shape, the game start with the shape of <a href="https://fr.wikipedia.org/wiki/Planeur_(jeu_de_la_vie)">Plane</a>
+3. Flashing shape, the game start with the shape of <a href="https://fr.wikipedia.org/wiki/Oscillateur_(automate_cellulaire)">Flashing</a>
+4. While everyone die, you'll ask chose column and row. The game will never end unless there is no cell.
+5. Quit the game
 
-```bash
-$bash : npm run build
-```
+### App
 
-To preview (needed build before) :
-
-```bash
-$bash : npm run preview
-```
+You can start the app inside App class, in main function.
 
 <p align="right"><a href="#top">⬆️</a></p>
-
 
 
 <!-- CONTRIBUTING -->
