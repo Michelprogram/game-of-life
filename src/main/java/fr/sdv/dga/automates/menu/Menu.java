@@ -1,4 +1,7 @@
-package fr.sdv.dga.automates;
+package fr.sdv.dga.automates.menu;
+
+import fr.sdv.dga.automates.game.Figures;
+import fr.sdv.dga.automates.game.Grid;
 
 import java.util.Scanner;
 

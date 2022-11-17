@@ -1,4 +1,4 @@
-package fr.sdv.dga.automates;
+package fr.sdv.dga.automates.game;
 
 public enum Figures {
     PLANE,

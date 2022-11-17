@@ -1,5 +1,7 @@
 package fr.sdv.dga.automates;
 
+import fr.sdv.dga.automates.game.Cell;
+import fr.sdv.dga.automates.game.Grid;
 import org.junit.Before;
 import org.junit.Test;
 

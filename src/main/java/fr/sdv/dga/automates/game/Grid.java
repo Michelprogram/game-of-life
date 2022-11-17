@@ -1,7 +1,6 @@
-package fr.sdv.dga.automates;
+package fr.sdv.dga.automates.game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static java.lang.Thread.sleep;
 

@@ -1,4 +1,4 @@
-package fr.sdv.dga.automates;
+package fr.sdv.dga.automates.game;
 
 import java.util.Random;
 
@@ -90,7 +90,7 @@ public class Cell {
      * @return
      */
     public String draw(){
-        return isAlive ? "X" :" ";
+        return isAlive ? "*" :" ";
     }
 
     public String toString(){
