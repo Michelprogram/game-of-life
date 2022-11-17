@@ -123,6 +123,11 @@ Menu class part interact with user. You can choose over 5 options.
 
 You can start the app inside App class, in main function.
 
+### Test
+
+All the tests can be run in test folder. 
+Each file test whole functionality for the class Grid and Cell.
+
 <p align="right"><a href="#top">⬆️</a></p>
 
 
