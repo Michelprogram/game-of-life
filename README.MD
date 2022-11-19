@@ -83,24 +83,28 @@ Get JDK at this url : https://openjdk.org/projects/jdk/16/
 In this project you'll find 3 Class.
 
 ### Grid
-Grid class contain 2 dimensions array represent by a board game, you can instance two types of Grid.
+Grid class contain 2 dimensions arrays represent by a board game, you can instance two types of Grid.
 
-1. With column and row value and number of generation 
-   * The board is initialed with random Cell Alive / Dead
+1. With column, row and number of generation 
+   * The board is initialed with random Cell Alive or Dead at 50% each.
 2. Based on figure, check the file enumeration Figures for more information
     * The board is initialed with dead Cell
+    * Than fill to create shape
 
-Also, you have 2 types of running game. First depend on numbers of generation and second stop when all cells are dead.
+Also, you have 2 types of running game. First depend on number of generation and second stop when all cells are dead.
 
-The main part of this class is scan. Scan over whole board and store new value in a new board and set old board with the new one. 
+The main part of this class is scan. 
+Scan over whole board and store new value in a new board and set old board with the new one at the end. 
 
 
 ### Cell
 
-Cell class is related about cells contain in board inside Grid class. You have 2 types of constructor.
+Cell class is related about cells contain in the board inside Grid class. 
+
+You have 2 types of constructor.
 
 1. You can choose if cell is alive or not
-2. IsAlive parameter is chosen randomly
+2. IsAlive parameter is chosen randomly 50%
 
 Rule method is based on this : 
 
@@ -177,7 +181,8 @@ Project Link: [https://github.com/Michelprogram/21-planets.git](https://github.c
 
 This space is a list to resources i found helpful and would like to give credit to.
 
-* [Learn react](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjYzP_lpu76AhUCcxoKHRQ8ASMQtwJ6BAgLEAI&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DbMknfKXIFA8&usg=AOvVaw0OS9ehWkuAe9Ahhi7b69mt)
+* [![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/fr/)
+* Junit https://junit.org/junit5/
 
 <p align="right"><a href="#top">⬆️</a></p>
 
